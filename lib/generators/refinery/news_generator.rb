@@ -1,5 +1,12 @@
 module Refinery
   class NewsGenerator < Rails::Generators::Base
+
+    source_root File.expand_path("../templates", __FILE__)
+
+    def generate_news_initializer
+      template "config/initializers/refinery/news.rb.erb", File.join(destination_root, "config", "initializers", "refinery", "news.rb")
+    end
+
     def rake_db
       rake("refinery_news:install:migrations")
       rake("refinery_settings:install:migrations")
